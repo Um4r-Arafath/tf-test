@@ -19,9 +19,9 @@ on:
         required: true
         type: boolean
       working-directory:
-        default: "."
         required: false
         type: string
+        default: "."
 
 permissions:
   id-token: write
