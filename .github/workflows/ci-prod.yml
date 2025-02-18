@@ -11,6 +11,10 @@ on:
       - main
       - "release/v**"
 
+permissions:
+  id-token: write
+  contents: read
+
 jobs:
   terraform-plan-prod:
     if: github.ref == 'refs/heads/main'
