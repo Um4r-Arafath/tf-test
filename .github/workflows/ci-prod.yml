@@ -22,7 +22,7 @@ jobs:
     uses: Um4r-Arafath/tf-test/.github/workflows/deploy.yml@main
     with:
       aws-region: ap-southeast-1
-      role-to-assume: arn:aws:iam::637423543671:role/github-actions-role
+      role-to-assume: arn:aws:iam::637423543671:role/tf-test
       backend-config: environments/prod/config.s3.tfbackend
       args: -var-file="environments/prod/terraform.tfvars"
       working-directory: ./services/api/iac
@@ -34,7 +34,7 @@ jobs:
     uses: Um4r-Arafath/tf-test/.github/workflows/deploy.yml@main
     with:
       aws-region: ap-southeast
-      role-to-assume: arn:aws:iam::637423543671:role/github-actions-role
+      role-to-assume: arn:aws:iam::637423543671:role/tf-test
       backend-config: environments/prod/config.s3.tfbackend
       args: -var-file="environments/prod/terraform.tfvars"
       working-directory: ./services/api/iac
