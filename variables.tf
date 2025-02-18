@@ -1,8 +1,8 @@
 variable "aws_region" {
-  type        = string
+  type = string
 }
 
 variable "bucket_name" {
-  type        = string
+  type = string
 }
 

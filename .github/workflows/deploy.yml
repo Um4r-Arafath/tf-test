@@ -1,0 +1,83 @@
+name: Terraform deploy
+
+on:
+  workflow_call:
+    inputs:
+      aws-region:
+        required: true
+        type: string
+      role-to-assume:
+        required: true
+        type: string
+      backend-config:
+        required: true
+        type: string
+      args:
+        required: true
+        type: string
+      deploy:
+        required: true
+        type: boolean
+      working-directory:
+        default: .
+        required: false
+        type: string
+
+permissions:
+  id-token: write
+  contents: read
+
+jobs:
+  terraform-plan:
+    name: Terraform plan
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v2
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-region: ${{ inputs.aws-region }}
+          role-to-assume: ${{ inputs.role-to-assume }}
+          role-session-name: deploy
+          role-skip-session-tagging: true
+
+      - name: Terraform init
+        run: terraform init -backend-config="${{ inputs.backend-config }}"
+        working-directory: ${{ inputs.working-directory }}
+
+      - name: Terraform Plan
+        run: terraform plan ${{ inputs.args }}
+        working-directory: ${{ inputs.working-directory }}
+
+  terraform-deploy:
+    needs: terraform-plan
+    if: ${{ inputs.deploy == true }}
+    name: Terraform deploy
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v2
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-region: ${{ inputs.aws-region }}
+          role-to-assume: ${{ inputs.role-to-assume }}
+          role-session-name: deploy
+          role-skip-session-tagging: true
+
+      - name: Terraform init
+        run: terraform init -backend-config="${{ inputs.backend-config }}"
+        working-directory: ${{ inputs.working-directory }}
+
+      - name: Terraform Apply
+        run: terraform apply ${{ inputs.args }} -auto-approve
+        working-directory: ${{ inputs.working-directory }}

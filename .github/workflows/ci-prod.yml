@@ -15,7 +15,7 @@ jobs:
   terraform-plan-prod:
     if: github.ref == 'refs/heads/main'
     name: Plan prod
-    uses: opstimus/github-actions-terraform/.github/workflows/deploy.yml@main
+    uses: Um4r-Arafath/tf-test/.github/workflows/deploy.yml@main
     with:
       aws-region: ap-southeast-1
       role-to-assume: arn:aws:iam::637423543671:role/github-actions-role
@@ -27,7 +27,7 @@ jobs:
   terraform-apply-prod:
     if: github.ref == 'refs/heads/release/v**'
     name: Deploy prod
-    uses: opstimus/github-actions-terraform/.github/workflows/deploy.yml@main
+    uses: Um4r-Arafath/tf-test/.github/workflows/deploy.yml@main
     with:
       aws-region: ap-southeast
       role-to-assume: arn:aws:iam::637423543671:role/github-actions-role

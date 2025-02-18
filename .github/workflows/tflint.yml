@@ -14,4 +14,4 @@ on:
 jobs:
   lint:
     name: "Lint"
-    uses: opstimus/github-actions-terraform/.github/workflows/lint.yml@v1
+    uses: Um4r-Arafath/tf-test/.github/workflows/lint.yml@main
