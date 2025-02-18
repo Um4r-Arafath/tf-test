@@ -25,7 +25,7 @@ jobs:
       role-to-assume: arn:aws:iam::637423543671:role/tf-test
       backend-config: environments/prod/config.s3.tfbackend
       args: -var-file="environments/prod/terraform.tfvars"
-      working-directory: ./services/api/iac
+      # working-directory: ./services/api/iac
       deploy: false
 
   terraform-apply-prod:
@@ -37,5 +37,5 @@ jobs:
       role-to-assume: arn:aws:iam::637423543671:role/tf-test
       backend-config: environments/prod/config.s3.tfbackend
       args: -var-file="environments/prod/terraform.tfvars"
-      working-directory: ./services/api/iac
+      # working-directory: ./services/api/iac
       deploy: true
