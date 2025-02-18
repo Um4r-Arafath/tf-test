@@ -1,0 +1,2 @@
+bucket = "terraform-prod-state-637423543671"
+key    = "base/terraform.tfstate"
