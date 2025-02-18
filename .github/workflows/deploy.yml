@@ -19,7 +19,7 @@ on:
         required: true
         type: boolean
       working-directory:
-        default: .
+        default: "."
         required: false
         type: string
 
