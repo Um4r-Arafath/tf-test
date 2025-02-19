@@ -4,12 +4,10 @@ on:
   push:
     branches:
       - main
-      - "release/v**"
 
   pull_request:
     branches:
       - main
-      - "release/v**"
 
 jobs:
   lint:
