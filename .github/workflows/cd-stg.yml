@@ -13,6 +13,8 @@ permissions:
   id-token: write
   contents: read
 
+concurrency: terraform-deploy-stg
+
 jobs:
   terraform-plan-stg:
     if: github.event_name == 'pull_request'
