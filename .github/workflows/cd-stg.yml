@@ -13,7 +13,7 @@ permissions:
   id-token: write
   contents: read
 
-concurrency: terraform-deploy-stg
+# concurrency: terraform-deploy-stg
 
 jobs:
   terraform-plan-stg:
