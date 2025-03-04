@@ -27,8 +27,8 @@ jobs:
       args: -var-file="environments/stg/terraform.tfvars"
       # working-directory: ./services/api/iac
       deploy: false
-      vars: |
-        TF_VAR_BUCKET_NAME=${{ vars.TF_VAR_BUCKET_NAME }}
+      other-vars: |
+        TF_VAR_bucket_name=${{ vars.TF_VAR_BUCKET_NAME }}
 
   terraform-deploy-stg:
     if: github.ref == 'refs/heads/main'
