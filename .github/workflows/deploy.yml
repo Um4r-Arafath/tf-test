@@ -22,9 +22,6 @@ on:
         default: "."
         required: false
         type: string
-      TF_VAR_bucket_name:
-        required: false
-        type: string
 
 permissions:
   id-token: write
