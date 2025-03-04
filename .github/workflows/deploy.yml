@@ -22,6 +22,9 @@ on:
         default: "."
         required: false
         type: string
+      vars:
+        required: true
+        type: string
 
 permissions:
   id-token: write
