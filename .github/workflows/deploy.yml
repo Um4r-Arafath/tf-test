@@ -13,16 +13,13 @@ on:
         required: true
         type: string
       args:
-        required: true
+        required: false
         type: string
       deploy:
         required: true
         type: boolean
       working-directory:
         default: "."
-        required: false
-        type: string
-      other-vars:
         required: false
         type: string
 
@@ -48,9 +45,6 @@ jobs:
           role-to-assume: ${{ inputs.role-to-assume }}
           role-session-name: deploy
           role-skip-session-tagging: true
-
-      - name: Export Extra Environment Variables
-        run: echo "${{ inputs.other-vars }}" >> $GITHUB_ENV
 
       - name: Terraform init
         run: terraform init -backend-config="${{ inputs.backend-config }}"
@@ -79,9 +73,6 @@ jobs:
           role-to-assume: ${{ inputs.role-to-assume }}
           role-session-name: deploy
           role-skip-session-tagging: true
-
-      - name: Export Extra Environment Variables
-        run: echo "${{ inputs.other-vars }}" >> $GITHUB_ENV
 
       - name: Terraform init
         run: terraform init -backend-config="${{ inputs.backend-config }}"
