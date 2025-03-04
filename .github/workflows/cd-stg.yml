@@ -17,7 +17,7 @@ concurrency: terraform-deploy-stg
 
 env:
   TF_VAR_TEST: ${{ vars.TF_VAR_TEST }}
-  TF_VAR_bucket_name: ${{ vars.TF_VAR_BUCKET_NAME }}
+  TF_VAR_bucket_name: ${{ secrets.TF_VAR_BUCKET_NAME }}
 
 jobs:
   print:
