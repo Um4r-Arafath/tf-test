@@ -23,7 +23,7 @@ on:
         required: false
         type: string
       other-vars:
-        required: true
+        required: false
         type: string
 
 permissions:
