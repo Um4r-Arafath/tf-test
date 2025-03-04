@@ -50,7 +50,7 @@ jobs:
           role-skip-session-tagging: true
 
       - name: Export Extra Environment Variables
-        run: echo "${{ inputs.vars }}" >> $GITHUB_ENV
+        run: echo "${{ inputs.other-vars }}" >> $GITHUB_ENV
 
       - name: Terraform init
         run: terraform init -backend-config="${{ inputs.backend-config }}"
@@ -81,7 +81,7 @@ jobs:
           role-skip-session-tagging: true
 
       - name: Export Extra Environment Variables
-        run: echo "${{ inputs.vars }}" >> $GITHUB_ENV
+        run: echo "${{ inputs.other-vars }}" >> $GITHUB_ENV
 
       - name: Terraform init
         run: terraform init -backend-config="${{ inputs.backend-config }}"
