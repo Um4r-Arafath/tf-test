@@ -15,7 +15,17 @@ permissions:
 
 concurrency: terraform-deploy-stg
 
+env:
+  TF_VAR_TEST: ${{ vars.TF_VAR_TEST }}
+
 jobs:
+  print:
+    name: Print
+    runs-on: ubuntu-latest
+    steps:
+      - name: Print
+        run: echo $TF_VAR_TEST
+
   terraform-plan-stg:
     if: github.event_name == 'pull_request'
     name: Plan stg
