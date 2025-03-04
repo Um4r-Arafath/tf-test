@@ -24,11 +24,10 @@ jobs:
       aws-region: ap-southeast-1
       role-to-assume: arn:aws:iam::637423543671:role/tf-test
       backend-config: environments/stg/config.s3.tfbackend
-      args: |
-        -var-file="environments/stg/terraform.tfvars"
-        -var "bucket_name=${{ vars.TF_VAR_BUCKET_NAME }}"
+      args: -var-file="environments/stg/terraform.tfvars"
       # working-directory: ./services/api/iac
       deploy: false
+      secrets: inherit
 
   terraform-deploy-stg:
     if: github.ref == 'refs/heads/main'
