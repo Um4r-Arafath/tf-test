@@ -46,6 +46,9 @@ jobs:
           role-session-name: deploy
           role-skip-session-tagging: true
 
+      - name: Export Extra Environment Variables
+        run: echo "${{ inputs.vars }}" >> $GITHUB_ENV
+
       - name: Terraform init
         run: terraform init -backend-config="${{ inputs.backend-config }}"
         working-directory: ${{ inputs.working-directory }}
@@ -73,6 +76,9 @@ jobs:
           role-to-assume: ${{ inputs.role-to-assume }}
           role-session-name: deploy
           role-skip-session-tagging: true
+
+      - name: Export Extra Environment Variables
+        run: echo "${{ inputs.vars }}" >> $GITHUB_ENV
 
       - name: Terraform init
         run: terraform init -backend-config="${{ inputs.backend-config }}"
