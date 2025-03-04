@@ -17,7 +17,7 @@ concurrency: terraform-deploy-stg
 
 env:
   TF_VAR_TEST: ${{ vars.TF_VAR_TEST }}
-  # TF_VAR_bucket_name: ${{ vars.TF_VAR_BUCKET_NAME }}
+  TF_VAR_bucket_name: ${{ vars.TF_VAR_BUCKET_NAME }}
 
 jobs:
   print:
@@ -36,7 +36,7 @@ jobs:
       role-to-assume: arn:aws:iam::637423543671:role/tf-test
       backend-config: environments/stg/config.s3.tfbackend
       args: -var-file="environments/stg/terraform.tfvars"
-      TF_VAR_bucket_name: ${{ vars.TF_VAR_BUCKET_NAME }}
+      TF_VAR_bucket_name: ${{ env.TF_VAR_bucket_name }}
       # working-directory: ./services/api/iac
       deploy: false
 
