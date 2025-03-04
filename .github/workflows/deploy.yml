@@ -54,7 +54,7 @@ jobs:
         run: terraform plan ${{ inputs.args }}
         working-directory: ${{ inputs.working-directory }}
         env:
-          bucket_name: ${{ vars.TF_VAR_BUCKET_NAME }}
+          bucket_name: ${{ secrets.TF_VAR_BUCKET_NAME }}
 
   terraform-deploy:
     needs: terraform-plan
@@ -84,4 +84,4 @@ jobs:
         run: terraform apply ${{ inputs.args }} -auto-approve
         working-directory: ${{ inputs.working-directory }}
         env:
-          bucket_name: ${{ vars.TF_VAR_BUCKET_NAME }}
+          bucket_name: ${{ secrets.TF_VAR_BUCKET_NAME }}
