@@ -27,7 +27,6 @@ jobs:
       args: -var-file="environments/stg/terraform.tfvars"
       # working-directory: ./services/api/iac
       deploy: false
-      secrets: inherit
 
   terraform-deploy-stg:
     if: github.ref == 'refs/heads/main'
