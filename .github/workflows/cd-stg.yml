@@ -22,6 +22,7 @@ jobs:
     uses: Um4r-Arafath/tf-test/.github/workflows/lint.yml@main
 
   terraform-deploy-stg:
+    needs: lint
     if: github.ref == 'refs/heads/main'
     name: Deploy stg
     uses: Um4r-Arafath/tf-test/.github/workflows/deploy.yml@main
