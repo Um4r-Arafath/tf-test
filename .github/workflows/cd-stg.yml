@@ -16,17 +16,10 @@ permissions:
 concurrency: terraform-deploy-stg
 
 jobs:
-  terraform-plan-stg:
-    if: github.event_name == 'pull_request'
-    name: Plan stg
-    uses: Um4r-Arafath/tf-test/.github/workflows/deploy.yml@main
-    with:
-      aws-region: ap-southeast-1
-      role-to-assume: arn:aws:iam::637423543671:role/tf-test
-      backend-config: environments/stg/config.s3.tfbackend
-      args: -var-file="environments/stg/terraform.tfvars"
-      # working-directory: ./services/api/iac
-      deploy: false
+  lint:
+    if: github.event_name == 'pull_request' && github.ref == 'refs/heads/main'
+    name: "Lint"
+    uses: Um4r-Arafath/tf-test/.github/workflows/lint.yml@main
 
   terraform-deploy-stg:
     if: github.ref == 'refs/heads/main'
@@ -38,4 +31,3 @@ jobs:
       backend-config: environments/stg/config.s3.tfbackend
       args: -var-file="environments/stg/terraform.tfvars"
       # working-directory: ./services/api/iac
-      deploy: true
