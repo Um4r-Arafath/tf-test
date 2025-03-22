@@ -36,7 +36,6 @@ jobs:
 
   terraform-deploy-prod:
     if: startsWith(github.ref, 'refs/tags/v')
-    needs: terraform-plan-prod
     name: Deploy prod
     uses: Um4r-Arafath/tf-test/.github/workflows/deploy.yml@main
     with:
